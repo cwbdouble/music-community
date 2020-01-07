@@ -1,0 +1,9 @@
+<!--components/playlist/music-swiper.wxml-->
+<swiper autoplay indicator-dots indicator-active-color="#fff">
+  <block wx:for="{{swiperList}}" wx:key="index">
+    <swiper-item>
+      <image src="{{item.url}}" mode="widthFix"></image>
+    </swiper-item>
+  </block>
+</swiper>
+

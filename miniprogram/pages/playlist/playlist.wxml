@@ -1,2 +1,7 @@
 <!--pages/playlist/playlist.wxml-->
-<text>pages/playlist/playlist.wxml</text>
+<music-swiper swiperList="{{swiperList}}"></music-swiper>
+<view class="list-container">
+  <block wx:for="{{songList}}" wx:key="index">
+    <song-sheet song="{{item}}"></song-sheet>
+  </block>
+</view>
