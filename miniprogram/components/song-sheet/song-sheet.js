@@ -11,8 +11,7 @@ Component({
   // 监听器
   observers:{
     ['song.playCount'](val){
-      console.log(val)
-      console.log(this._traceNum(val,2))
+      
       this.setData({
         _count : this._traceNum(val,2)
       })

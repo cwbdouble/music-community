@@ -2,5 +2,6 @@
   "usingComponents": {
     "music-swiper": "/components/music-swiper/music-swiper",
     "song-sheet": "/components/song-sheet/song-sheet"
-  }
+  },
+  "enablePullDownRefresh": true
 }
