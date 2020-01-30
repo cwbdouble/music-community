@@ -1,5 +1,5 @@
 <!--components/song-sheet/song-sheet.wxml-->
-<view class="container">  
+<view class="container" bindtap="goMusicList">  
   <text class="playCount">{{_count}}</text>
   <image src="{{song.picUrl}}" class="fengmian"></image>
   <view class="desciption">{{song.name}}</view>

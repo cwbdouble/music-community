@@ -40,6 +40,12 @@ Component({
         let decimal = str.substring(str.length-8,str.length-8+point)
         return parseFloat(parseInt(val/100000000)+'.'+decimal)+'亿' 
       }
+    },
+    goMusicList(){
+      
+      wx.navigateTo({
+        url: `../../pages/musiclist/musiclist?musicId=${this.data.song.id}`,
+      })
     }
   }
 })
