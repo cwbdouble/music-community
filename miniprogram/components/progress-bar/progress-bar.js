@@ -10,7 +10,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    isSame: Boolean
   },
   
 
@@ -29,6 +29,10 @@ Component({
   },
   lifetimes:{
     ready(){
+      if (this.properties.isSame && this.data.showTimer.totalTime == '00:00'){
+        this._setTime()
+      }
+      
       this._getMovableDis()
       this._bindBGMEvent()
     }
@@ -44,8 +48,9 @@ Component({
       if(event.detail.source=='touch'){
         this.data.progress = event.detail.x/(movableAreaWidth-movableViewWidth) * 100
         this.data.movableDis = event.detail.x
+        isMoving = true
       }
-      isMoving = true
+      
     },
     //拖动离开后才触发setData 提升性能
     onTouchEnd(){
@@ -56,6 +61,7 @@ Component({
         ['showTimer.currentTime']: `${currentTime.min}:${currentTime.sec}`
       })
       backgroundAudioManager.seek(duration*this.data.progress/100)
+      isMoving = false
     },
 
     _getMovableDis(){
@@ -71,9 +77,11 @@ Component({
     },
 
     _bindBGMEvent() {
+      console.log('aaa')
       backgroundAudioManager.onPlay(() => {
         console.log('onPlay')
         isMoving = false
+        this.triggerEvent('onPlay')
       })
 
       backgroundAudioManager.onStop(() => {
@@ -82,6 +90,7 @@ Component({
 
       backgroundAudioManager.onPause(() => {
         console.log('Pause')
+        this.triggerEvent('onPause')
         
       })
 
@@ -116,7 +125,9 @@ Component({
             })
             current = currentTime.toString().split('.')[0]
             // console.log(current)
+            this.triggerEvent('sendCurrentTime', { currentTime })
           }
+          
         }
       })
 

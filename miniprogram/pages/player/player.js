@@ -3,7 +3,7 @@ let playingIndex = -1;
 let musicList = []
 //获取全局唯一的背景音乐播放管理器
 const musicControl = wx.getBackgroundAudioManager()
-
+const app = getApp()
 Page({
 
   /**
@@ -12,7 +12,9 @@ Page({
   data: {
     picurl:'',
     isPlaying: false,
-    isShowLyric: false
+    isShowLyric: false,
+    lyric:'',
+    isSame:false//是否为同一首歌
   },
 
   /**
@@ -20,14 +22,39 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    
     playingIndex = options.index
     musicList = wx.getStorageSync(
       'musicList'
     )
     this._loadMusicDetail(options.musicId)
   },
+  onPlay(){
+    this.setData({
+      isPlaying: true
+    })
+  },
+  onPause(){
+    this.setData({
+      isPlaying: false
+    })
+    console.log('歌曲暂停了')
+  },
+
   _loadMusicDetail(musicId){
-    musicControl.stop()
+    if (musicId == app.getPlayMusicId()){
+      this.setData({
+        isSame: true
+      })
+    }else{
+      this.setData({
+        isSame: false
+      })
+    }
+    if(!this.data.isSame){
+      musicControl.stop()
+    }
+    
     let music = musicList[playingIndex]
     console.log(music)
     wx.setNavigationBarTitle({
@@ -37,6 +64,7 @@ Page({
       picurl: music.al.picUrl,
       isPlaying: false
     })
+    app.setPlayMusicId(musicId)
     wx.showLoading({
       title: '歌曲正在加载中',
     })
@@ -49,15 +77,35 @@ Page({
     }).then((res)=>{
       console.log(res)
       let result = res.result.data[0]
-      musicControl.title = music.name
-      musicControl.src = result.url
-      musicControl.coverImgUrl = music.al.picUrl
-      musicControl.singer = music.ar[0].name
+      if(!this.data.isSame){
+        musicControl.title = music.name
+        musicControl.src = result.url
+        musicControl.coverImgUrl = music.al.picUrl
+        musicControl.singer = music.ar[0].name
+      }
+      
       this.setData({
         isPlaying:true
       })
+
       wx.hideLoading()
-      
+      musicControl.play()
+      wx.cloud.callFunction({
+        name:'music',
+        data:{
+          musicId,
+          $url:'lyric'
+        }
+      }).then((res)=>{
+        
+        let lyr = '暂无歌词'
+        if(res.result.lrc){
+          lyr = res.result.lrc.lyric
+        }
+        this.setData({
+          lyric: lyr
+        })
+      })
     })
 
   },
@@ -89,5 +137,8 @@ Page({
     this.setData({
       isShowLyric: !this.data.isShowLyric
     })
+  },
+  getCurrentTime(event){
+    this.selectComponent('.lyric').update(event.detail.currentTime)
   }
 })

@@ -49,6 +49,19 @@
 					"pathName": "pages/player/player",
 					"query": "musicId=1418054507&index=14",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/blog/blog",
+					"pathName": "pages/blog/blog",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "blog-edit",
+					"pathName": "pages/blog-edit/blog-edit",
+					"query": "avateUrl=\"https://wx.qlogo.cn/mmopen/vi_32/5r6ZlVl5VWh2yeKgIZ8SGkunf9rSoia9DCzBoBFKT3FFlcXwz3fWJgnPRsadpjyjtDn3MHVRTYyW6bQiaQtrVonw/132\"&nickName= \"Jesses\"",
+					"scene": null
 				}
 			]
 		}

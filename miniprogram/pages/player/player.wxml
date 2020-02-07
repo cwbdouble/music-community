@@ -10,10 +10,16 @@
   </view>
 
   <!-- 歌词 -->
-  <x-lyric isShowLyric="{{!isShowLyric}}" bindtap="handleShowLyric"/>
+  <x-lyric class="lyric" isShowLyric="{{!isShowLyric}}" bindtap="handleShowLyric" lyric="{{lyric}}"/>
   <!-- 进度条 -->
   <view class="progress-bar">
-   <x-progress bind:musicEnd="onNext"/>
+   <x-progress 
+      bind:musicEnd="onNext" 
+      bind:sendCurrentTime="getCurrentTime"
+      bind:onPlay="onPlay"
+      bind:onPause="onPause"
+      isSame="{{isSame}}"
+      />
   </view>
  
 </view>

@@ -14,6 +14,13 @@ Component({
   data: {
     playingId: -1
   },
+  pageLifetimes:{
+    show(){
+      this.setData({
+        playingId: app.getPlayMusicId()
+      }) 
+    }
+  },
   
 
   /**

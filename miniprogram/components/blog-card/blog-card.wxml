@@ -1,0 +1,20 @@
+<!--components/blog-card/blog-card.wxml-->
+<view class="container">
+  <view class="header">
+    <image class="image" src="{{blog.avateUrl}}"></image>
+    <view class="msg">
+      <text>{{blog.nickName}}</text>
+      <text class="time">{{time}}</text>
+    </view>
+  </view>
+  <view class="content">
+    <view>{{blog.content}}</view>
+    <view class="imgList">
+      <block wx:for="{{blog.img}}" wx:key="*this">
+        <image class="b-img" src="{{item}}" mode="aspectFill" bindtap="seeImage" data-current="{{item}}"></image>
+      </block>
+    </view>
+    
+  </view>
+</view>
+

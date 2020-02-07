@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "x-search": "/components/search/search",
+    "x-login": "/components/login/login",
+    "x-card": "/components/blog-card/blog-card"
+  }
 }

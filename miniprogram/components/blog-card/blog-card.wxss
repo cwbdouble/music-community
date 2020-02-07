@@ -1,0 +1,47 @@
+/* components/blog-card/blog-card.wxss */
+page{
+  background: #f4f0f4;
+}
+.container{
+  padding: 15rpx;
+  background: #Fff;
+  margin-top: 15rpx;
+  padding-top: 0;
+}
+.header{
+  display: flex;
+  align-items: center;
+  height: 120rpx;
+}
+.image{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+}
+.msg{
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 35rpx;
+  justify-content: center;
+}
+.time{
+  font-size: 25rpx;
+  color: gray;
+}
+.content{
+  font-size: 30rpx;
+}
+.imgList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 8rpx;
+
+}
+.b-img{
+  width: 240rpx;
+  height: 240rpx;
+  margin-top: 3rpx;
+}

@@ -1,1 +1,25 @@
-/* components/lyric/lyric.wxss */
+.lyric-scroll {
+  width: 100%;
+  height: 70%;
+  color: #ccc;
+  font-size: 32rpx;
+}
+
+.lyric-scroll ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+.lyric-panel {
+  position: relative;
+  top: 50%;
+}
+
+.lyric {
+  min-height: 64rpx;
+}
+
+.hightlight-lyric {
+  color: #d43c33;
+}
